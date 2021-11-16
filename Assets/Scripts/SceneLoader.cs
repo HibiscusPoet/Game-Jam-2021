@@ -17,6 +17,7 @@ public class SceneLoader : MonoBehaviour
 
     public void GoBackToMenu()
     {
+        Debug.Log("clicked");
         SceneManager.LoadScene("Main Menu");
     }
 }
