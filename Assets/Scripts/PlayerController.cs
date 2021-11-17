@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float jump = 0.5f;
 
+    private float movement;
+
     Rigidbody2D rigidbody2d;
 
     // Start is called before the first frame update
@@ -20,11 +22,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rigidbody2d.AddForce(new Vector2(speed, 0));
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Jump") && Mathf.Abs(rigidbody2d.velocity.y) < 0.01f)
         {
-            rigidbody2d.AddForce(new Vector2(0, jump));
+            rigidbody2d.AddForce(new Vector2(0, jump), ForceMode2D.Impulse);
         }
+
+        movement = Input.GetAxis("Horizontal");
+        transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * speed;
     }
 }

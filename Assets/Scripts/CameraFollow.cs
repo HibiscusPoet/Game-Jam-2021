@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
-    Vector3 offset = new Vector3(0, 0, -10);
+    Vector3 offset = new Vector3(0, 1, -10);
 
     // Start is called before the first frame update
     void Start()
