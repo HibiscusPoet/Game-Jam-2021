@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private float movement;
 
     Rigidbody2D rigidbody2d;
+    Vector3 savePoint = new Vector3(-5f, -2.5f, 0f);
 
     // Start is called before the first frame update
     void Start()
@@ -29,5 +30,18 @@ public class PlayerController : MonoBehaviour
 
         movement = Input.GetAxis("Horizontal");
         transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * speed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Spikes")
+        {
+            transform.position = savePoint;
+        }
+
+        if (collision.gameObject.tag == "Savepoint")
+        {
+            savePoint = collision.gameObject.transform.position;
+        }
     }
 }
