@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float jump = 0.5f;
 
+    public DialogueTrigger dialogueTrigger;
+    public GameObject dialogueRelated;
+
     private float movement;
 
     Rigidbody2D rigidbody2d;
@@ -42,6 +45,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Savepoint")
         {
             savePoint = collision.gameObject.transform.position;
+        }
+
+        if (collision.gameObject.tag == "Castle")
+        {
+            dialogueRelated.SetActive(true);
+            dialogueTrigger.TriggerDialogue();
         }
     }
 }
